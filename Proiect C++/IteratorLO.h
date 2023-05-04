@@ -23,17 +23,21 @@ private:
 public:
 
     //reseteaza pozitia iteratorului la inceputul containerului
+    // complexitate: O(n)
     void prim();
 
     //muta iteratorul in container
     // arunca exceptie daca iteratorul nu e valid
+    // complexitate: Theta(1)
     void urmator();
 
     //verifica daca iteratorul e valid (indica un element al containerului)
+    // complexitate: Theta(1)
     bool valid() const;
 
     //returneaza valoarea elementului din container referit de iterator
     //arunca exceptie daca iteratorul nu e valid
+    // complexitate: Theta(1)
     TElement element() const;
 };
 

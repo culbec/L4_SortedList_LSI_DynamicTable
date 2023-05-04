@@ -6,6 +6,7 @@ class IteratorLO;
 
 typedef int TComparabil;
 typedef TComparabil TElement;
+typedef bool(*Conditie)(TElement);
 
 typedef bool (*Relatie)(TElement, TElement);
 
@@ -72,28 +73,39 @@ public:
     explicit LO(Relatie r);
 
     // returnare dimensiune
+    // complexitate: Theta(1)
     int dim() const;
 
     // verifica daca LO e vida
+    // complexitate: Theta(1)
     bool vida() const;
 
     // prima pozitie din LO
+    // complexitate: O(n)
     IteratorLO prim() const;
 
     // returnare element de pe pozitia curenta
     //arunca exceptie daca poz nu e valid
+    // complexitate: Theta(1)
     TElement element(IteratorLO &poz) const;
 
     // adaugare element in LO a.i. sa se pastreze ordinea intre elemente
+    // complexitate: Theta(poz_element)
     void adauga(TElement e);
 
     // sterge element de pe o pozitie poz si returneaza elementul sters
     //dupa stergere poz e pozitionat pe elementul de dupa cel sters
     //arunca exceptie daca poz nu e valid
+    // complexitate: Theta(poz.pozitie)
     TElement sterge(IteratorLO &poz);
 
     // cauta element si returneaza prima pozitie pe care apare (sau iterator invalid)
+    // complexitate: O(n)
     IteratorLO cauta(TElement e) const;
+
+    // functie de filtrare -> pastreaza acele elemente care respecta o anumita conditie Conditie
+    // complexitate: Theta(n);
+    void filtreaza(Conditie cond);
 
     //destructor
     ~LO();

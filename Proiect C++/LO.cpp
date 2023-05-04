@@ -121,7 +121,7 @@ TElement LO::sterge(IteratorLO &poz) {
     this->dealocaNod(prev); // dealocam nodul
     this->lungime--; // actualizam lungimea
 
-    if(prev.pozitie == this->first)
+    if (prev.pozitie == this->first)
         this->first = poz.pozitie; // reactualizam pozitia primului element
 
     return deleted;
@@ -185,6 +185,24 @@ void LO::adauga(TElement e) {
             this->elems[iter.pozitie].next = posCurrent;
             this->elems[posPrev].next = iter.pozitie;
             this->lungime++;
+        }
+    }
+}
+
+void LO::filtreaza(Conditie cond) {
+    // verificam daca lista este vida
+    if (this->vida())
+        return;
+
+    // plasam un iterator pe primul element din lista
+    IteratorLO iter{*this};
+
+    // parcurgem lista si stergem elementele care nu respecta conditia
+    while (iter.valid()) {
+        if (!cond(iter.element())) {
+            this->sterge(iter);
+        } else {
+            iter.urmator();
         }
     }
 }
